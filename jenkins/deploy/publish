@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "********************"
+echo "**** Publiching ****"
+echo "********************"
+
+export IMAGE=$(sed -n '1p' /tmp/.auth)
+export TAG=$(sed -n '2p' /tmp/.auth)
+export PASS=$(sed -n '3p' /tmp/.auth)
+
+docker login -u aviboinidocker -p $PASS
+cd /home/prod-user/maven && docker-compose up -d
